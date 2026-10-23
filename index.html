@@ -4,17 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gabby's Quiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
 </head>
 <body>
-  <div class="stars"></div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
   <main class="card">
     <!-- HOME -->
     <section id="home-view">
-      <h1 class="title">Gabby's <span class="glow">Quiz</span></h1>
-      <p class="subtitle">Made 100% in Mistral 💜 — no Replit needed!</p>
-      <button id="btn-start" class="btn">Start Quiz 🚀</button>
+      <p class="kicker">✨ welcome to ✨</p>
+      <h1 class="title">Gabby's <span class="script">Quiz</span></h1>
+      <p class="subtitle">A cute trivia challenge — made 100% in Mistral 💜</p>
+      <button id="btn-start" class="btn">Start Quiz 🌸</button>
     </section>
     <!-- QUIZ -->
     <section id="quiz-view" hidden>
@@ -31,7 +37,7 @@
     </section>
     <!-- RESULTS -->
     <section id="results-view" hidden>
-      <h2 class="title">Quiz <span class="glow">Complete!</span> 🎉</h2>
+      <h2 class="title">Quiz <span class="script">Complete!</span> 🎉</h2>
       <div class="score-card">
         <div id="final-score" class="big-score">0 / 6</div>
         <div class="score-label">Final Score</div>
@@ -39,7 +45,7 @@
       <p id="result-msg" class="subtitle"></p>
       <div class="actions">
         <button id="btn-again" class="btn">Play Again 🔄</button>
-        <button id="btn-home" class="btn btn-ghost">Back to Home</button>
+        <button id="btn-home" class="btn btn-soft">Back to Home</button>
       </div>
     </section>
   </main>
