@@ -13,7 +13,10 @@
   <!-- Logged-in header (hidden until signed in) -->
   <header id="topbar" class="topbar hidden">
     <span id="welcome" class="welcome"></span>
-    <button id="btn-logout" class="btn btn-outline">Log Out</button>
+    <nav class="nav">
+      <a id="nav-admin" class="nav-link admin-only hidden" href="#">Question Editor</a>
+      <button id="btn-logout" class="btn btn-outline">Log Out</button>
+    </nav>
   </header>
 
   <main class="container">
@@ -53,10 +56,14 @@
       <p class="switch">Already have an account? <a href="#" id="show-login">Log in</a></p>
     </section>
 
-    <!-- Logged-in view -->
+    <!-- Logged-in home view (role-aware) -->
     <section id="home-card" class="card hidden">
       <h2 class="card-title" id="hello"></h2>
-      <p class="tagline">You're all set — quizzes are coming in Phase 3! 💜</p>
+      <p id="role-badge" class="role-badge"></p>
+      <p class="tagline" style="text-align:center">You're all set — quizzes are coming in Phase 3! 💜</p>
+      <p id="admin-note" class="admin-note admin-only hidden" style="text-align:center">
+        🛠️ Admin powers active — the Question Editor arrives in Phase 5.
+      </p>
     </section>
 
     <p id="msg" class="msg" role="alert"></p>

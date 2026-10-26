@@ -9,6 +9,7 @@
   --white: #ffffff;
   --error: #e11d48;
   --good: #16a34a;
+  --gold: #d4a017;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -36,11 +37,7 @@ body {
 
 .tagline { color: var(--purple); margin-bottom: 1.5rem; }
 
-.container {
-  width: 100%;
-  max-width: 430px;
-  text-align: center;
-}
+.container { width: 100%; max-width: 430px; text-align: center; }
 
 .card {
   background: var(--white);
@@ -115,15 +112,9 @@ body {
 }
 
 .switch { margin-top: 1rem; text-align: center; }
-
 .switch a { color: var(--deep-purple); font-weight: 700; text-decoration: underline; }
 
-.msg {
-  min-height: 1.6rem;
-  font-size: 1.2rem;
-  text-align: center;
-}
-
+.msg { min-height: 1.6rem; font-size: 1.2rem; text-align: center; }
 .msg.error { color: var(--error); }
 .msg.good { color: var(--good); }
 
@@ -140,7 +131,39 @@ body {
   width: 100%;
 }
 
+.nav { display: flex; align-items: center; gap: 1rem; }
+
 .welcome { color: var(--deep-purple); font-size: 1.3rem; }
+
+.nav-link {
+  color: var(--purple);
+  text-decoration: none;
+  font-size: 1.2rem;
+  border-bottom: 2px dashed var(--pink);
+}
+
+.nav-link:hover { color: var(--deep-purple); }
+
+/* Role-aware UI (RBAC) */
+.role-badge {
+  display: inline-block;
+  margin: 0 auto 1rem;
+  padding: 0.25rem 1rem;
+  border-radius: 999px;
+  font-size: 1.05rem;
+  text-align: center;
+  background: #f3e8ff;
+  color: var(--purple);
+  border: 1.5px solid var(--purple);
+}
+
+.role-badge.admin {
+  background: #fff6d8;
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+.admin-note { color: var(--gold); margin-bottom: 1rem; }
 
 .hidden { display: none; }
 

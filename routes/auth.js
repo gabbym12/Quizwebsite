@@ -1,4 +1,4 @@
-// routes/auth.js - Phase 2: Authentication (bcrypt + sessions)
+// routes/auth.js - Phase 2: Authentication & RBAC (bcrypt + sessions + roles)
 import { Router } from 'express';
 import bcrypt from 'bcryptjs';
 import { query } from '../db/index.js';
@@ -76,8 +76,19 @@ authRouter.get('/me', async (req, res) => {
   res.json({ user: rows[0] ?? null });
 });
 
-// Middleware for routes that require a logged-in user
+// --- RBAC middleware ---
+
+// Requires a logged-in user (any role)
 export function requireAuth(req, res, next) {
   if (!req.session.userId) return res.status(401).json({ error: 'Please log in.' });
+  next();
+}
+
+// Requires a logged-in user with role = 'admin' (403 Forbidden otherwise)
+export function requireAdmin(req, res, next) {
+  if (!req.session.userId) return res.status(401).json({ error: 'Please log in.' });
+  if (req.sessionRole !== 'admin') {
+    return res.status(403).json({ error: 'Admins only. 🚫' });
+  }
   next();
 }
