@@ -1,0 +1,19 @@
+{
+  "name": "gabby-quiz-app",
+  "version": "1.0.0",
+  "description": "Gabby Football Quiz Web Application - football trivia platform for players, students, and admins",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "migrate": "node db/migrate.js"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "pg": "^8.16.0"
+  }
+}

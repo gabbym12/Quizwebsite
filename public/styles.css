@@ -1,0 +1,33 @@
+/* public/styles.css - Phase 1 placeholder styling */
+:root {
+  --bg: #2d1b4e;
+  --card: #ffffff;
+  --accent: #ff6b9d;
+  --text: #2d1b4e;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: linear-gradient(135deg, var(--bg), #6b4fa0);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+}
+
+.container {
+  background: var(--card);
+  padding: 3rem 2.5rem;
+  border-radius: 20px;
+  max-width: 520px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+}
+
+h1 { font-size: 2rem; margin-bottom: 0.75rem; }
+.subtitle { color: #6b6b7b; margin-bottom: 1.25rem; }
+.status { font-weight: 600; color: #4a2f7a; }
