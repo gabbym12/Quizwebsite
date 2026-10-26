@@ -25,49 +25,90 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   color: var(--text);
   font-size: 1.15rem;
-  padding: 1.5rem;
+  padding: 0 1.5rem 1.5rem;
 }
 
 .title {
-  font-family: "Great Vibes", "Brush Script MT", cursive;
-  font-size: clamp(2.8rem, 7vw, 4.5rem);
+  font-family: "Caveat", "Segoe Print", cursive;
+  font-size: clamp(3.2rem, 6.25vw, 4rem);
+  font-weight: 700;
+  line-height: 0.96;
   color: var(--deep-purple);
-  text-shadow: 2px 2px 0 var(--bg-pink);
-  margin-bottom: 0.25rem;
+  margin-bottom: 0;
+  white-space: nowrap;
 }
 
-.tagline { color: var(--purple); margin-bottom: 1.5rem; }
+.tagline {
+  color: var(--purple);
+  font-family: "Caveat", "Segoe Print", cursive;
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 0.15rem 0 1.5rem;
+}
 
-.container { width: 100%; max-width: 520px; text-align: center; }
+.container {
+  width: 100%;
+  max-width: 465px;
+  padding-top: clamp(8rem, 22.5vh, 13rem);
+  text-align: center;
+}
 
 .card {
   background: var(--white);
-  border-radius: 24px;
-  padding: 2rem 2.25rem;
+  border-radius: 22px;
+  padding: 1.65rem 2rem 1.45rem;
   box-shadow: 0 12px 32px rgba(124, 58, 173, 0.18);
   border: 2px solid #f8d8ee;
   text-align: left;
   margin-bottom: 1rem;
 }
 
+#login-card { min-height: 360px; }
+
 .card-title {
-  font-family: "Great Vibes", cursive;
-  font-size: 2rem;
+  font-family: "Dancing Script", "Segoe Script", cursive;
+  font-size: 1.85rem;
+  font-weight: 700;
+  line-height: 1.1;
   color: var(--deep-purple);
   text-align: center;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.9rem;
 }
 
-.form { display: flex; flex-direction: column; gap: 1rem; }
+.form { display: flex; flex-direction: column; gap: 0.75rem; }
 
-.label { display: flex; flex-direction: column; gap: 0.35rem; font-size: 1.25rem; color: var(--purple); }
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 1.1rem;
+  color: var(--purple);
+}
+
+.container > #login-card .card-title,
+.container > #login-card .label,
+.container > #login-card .btn,
+.container > #login-card .switch {
+  font-family: "Caveat", "Segoe Print", cursive;
+  font-weight: 700;
+}
+
+.container > #login-card .card-title {
+  font-size: 1.9rem;
+  margin-bottom: 0.9rem;
+}
+
+.container > #login-card .label {
+  font-size: 1.05rem;
+  gap: 0.2rem;
+}
 
 .input {
-  font-family: inherit;
-  font-size: 1.15rem;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: 1rem;
   padding: 0.65rem 0.9rem;
   border: 2px solid #ecd9f7;
   border-radius: 14px;
@@ -81,7 +122,7 @@ body {
 
 .btn {
   font-family: inherit;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   padding: 0.6rem 1.5rem;
   border-radius: 999px;
   border: 2px solid transparent;
@@ -108,12 +149,25 @@ body {
 
 .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
 
-.switch { margin-top: 1rem; text-align: center; }
+.switch { margin-top: 0.8rem; font-size: 1rem; text-align: center; }
+.container > #login-card .switch { font-size: 1rem; }
+.container > #login-card .btn { font-size: 1.15rem; }
 .switch a { color: var(--deep-purple); font-weight: 700; text-decoration: underline; }
 
 .msg { min-height: 1.6rem; font-size: 1.2rem; text-align: center; }
+.msg:empty { display: none; }
 .msg.error { color: var(--error); }
 .msg.good { color: var(--good); }
+
+.page-note {
+  width: 100%;
+  margin: 2.2rem 0 0;
+  color: #9a81a8;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  text-align: center;
+}
 
 .topbar {
   position: fixed;
@@ -302,6 +356,12 @@ body {
 .hidden { display: none; }
 
 @media (max-width: 480px) {
+  body { padding: 0 1rem 1.5rem; }
+  .container { padding-top: clamp(4.5rem, 12vh, 7rem); }
+  .title {
+    font-size: clamp(2.7rem, 10.5vw, 3.2rem);
+    white-space: normal;
+  }
   .card { padding: 1.5rem 1.25rem; }
   .quiz-controls { flex-direction: column-reverse; }
   .quiz-controls .btn { max-width: 100%; }
