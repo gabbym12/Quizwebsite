@@ -1,0 +1,1 @@
+- [Login-screen scope](login-screen-scope.md) — preserve the supplied Mistral login screen; change visible design only when the user asks.
