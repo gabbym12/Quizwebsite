@@ -10,11 +10,12 @@
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
-  <!-- Logged-in header (hidden until signed in) -->
+  <!-- Logged-in header -->
   <header id="topbar" class="topbar hidden">
     <span id="welcome" class="welcome"></span>
     <nav class="nav">
       <a id="nav-admin" class="nav-link admin-only hidden" href="#">Question Editor</a>
+      <button id="btn-back" class="btn btn-outline hidden">Home</button>
       <button id="btn-logout" class="btn btn-outline">Log Out</button>
     </nav>
   </header>
@@ -56,14 +57,42 @@
       <p class="switch">Already have an account? <a href="#" id="show-login">Log in</a></p>
     </section>
 
-    <!-- Logged-in home view (role-aware) -->
+    <!-- Home view: role badge + quiz picker -->
     <section id="home-card" class="card hidden">
       <h2 class="card-title" id="hello"></h2>
       <p id="role-badge" class="role-badge"></p>
-      <p class="tagline" style="text-align:center">You're all set — quizzes are coming in Phase 3! 💜</p>
+      <p class="section-label">Pick a quiz:</p>
+      <div id="quiz-list" class="quiz-list"></div>
       <p id="admin-note" class="admin-note admin-only hidden" style="text-align:center">
         🛠️ Admin powers active — the Question Editor arrives in Phase 5.
       </p>
+    </section>
+
+    <!-- Quiz view -->
+    <section id="quiz-card" class="card quiz-card hidden">
+      <div class="quiz-top">
+        <span id="q-quiz-title" class="q-quiz-title"></span>
+        <span id="timer" class="timer">5:00</span>
+      </div>
+      <div class="progress"><div id="progress-fill" class="progress-fill"></div></div>
+      <p id="q-count" class="q-count"></p>
+      <h2 id="question" class="question"></h2>
+      <div id="options" class="options"></div>
+      <p id="feedback" class="feedback"></p>
+      <p id="explanation" class="explanation"></p>
+      <div class="quiz-controls">
+        <button id="btn-prev" class="btn btn-outline">Previous</button>
+        <button id="btn-next" class="btn btn-primary" disabled>Next</button>
+      </div>
+    </section>
+
+    <!-- Results view -->
+    <section id="results-card" class="card hidden">
+      <h2 class="card-title">Your Results 💯</h2>
+      <p id="final-score" class="final-score"></p>
+      <p id="result-msg" class="result-msg"></p>
+      <button id="btn-retry" class="btn btn-primary">Retry Quiz</button>
+      <button id="btn-home-results" class="btn btn-outline">Back to Quizzes</button>
     </section>
 
     <p id="msg" class="msg" role="alert"></p>
