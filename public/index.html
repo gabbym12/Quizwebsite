@@ -3,9 +3,65 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gabby Football Quiz</title>
+  <title>Gabby Football Quiz 🏈</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
+  <!-- Logged-in header (hidden until signed in) -->
+  <header id="topbar" class="topbar hidden">
+    <span id="welcome" class="welcome"></span>
+    <button id="btn-logout" class="btn btn-outline">Log Out</button>
+  </header>
+
+  <main class="container">
+    <h1 class="title">Gabby Football Quiz</h1>
+    <p class="tagline">Log in to play 🏈</p>
+
+    <!-- Login form -->
+    <section id="login-card" class="card">
+      <h2 class="card-title">Log In</h2>
+      <form id="login-form" class="form">
+        <label class="label">Username
+          <input id="login-username" class="input" type="text" autocomplete="username" required />
+        </label>
+        <label class="label">Password
+          <input id="login-password" class="input" type="password" autocomplete="current-password" required />
+        </label>
+        <button type="submit" class="btn btn-primary">Log In</button>
+      </form>
+      <p class="switch">New here? <a href="#" id="show-register">Create an account</a></p>
+    </section>
+
+    <!-- Register form -->
+    <section id="register-card" class="card hidden">
+      <h2 class="card-title">Create Account</h2>
+      <form id="register-form" class="form">
+        <label class="label">Username
+          <input id="reg-username" class="input" type="text" autocomplete="username" minlength="3" required />
+        </label>
+        <label class="label">Email
+          <input id="reg-email" class="input" type="email" autocomplete="email" required />
+        </label>
+        <label class="label">Password (8+ characters)
+          <input id="reg-password" class="input" type="password" autocomplete="new-password" minlength="8" required />
+        </label>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+      </form>
+      <p class="switch">Already have an account? <a href="#" id="show-login">Log in</a></p>
+    </section>
+
+    <!-- Logged-in view -->
+    <section id="home-card" class="card hidden">
+      <h2 class="card-title" id="hello"></h2>
+      <p class="tagline">You're all set — quizzes are coming in Phase 3! 💜</p>
+    </section>
+
+    <p id="msg" class="msg" role="alert"></p>
+  </main>
+
+  <script src="/app.js"></script>
 </body>
 </html>
