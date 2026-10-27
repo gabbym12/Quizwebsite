@@ -31,6 +31,7 @@ function showLoggedIn(user) {
   currentUser = user;
   const isAdmin = user.role === "admin";
   $("topbar").classList.remove("hidden");
+  $("btn-back").classList.remove("hidden");
   $("welcome").textContent = `Hi, ${user.username}! 💜`;
   $("nav-admin").classList.toggle("hidden", !isAdmin);
   $("hello").textContent = `Welcome, ${user.username}!`;
@@ -45,6 +46,7 @@ function showLoggedIn(user) {
 function showLoggedOut() {
   currentUser = null;
   $("topbar").classList.add("hidden");
+  $("btn-back").classList.add("hidden");
   document.querySelectorAll(".admin-only").forEach((el) => el.classList.add("hidden"));
   showCard("login-card");
   setMsg("");

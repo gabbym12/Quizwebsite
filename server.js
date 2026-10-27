@@ -59,6 +59,17 @@ app.get('/api/db-health', async (req, res) => {
 
 app.use('/api', (req, res) => res.status(404).json({ error: 'Not found' }));
 
+// --- Global error handler: clean JSON for API errors instead of a crash ---
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => {
+  console.error('unhandled error:', err);
+  if (res.headersSent) return next(err);
+  if (req.path && req.path.startsWith('/api')) {
+    return res.status(503).json({ error: 'Service temporarily unavailable. Check the database connection.' });
+  }
+  res.status(500).send('Something went wrong.');
+});
+
 app.listen(PORT, () => {
   console.log(`Gabby Football Quiz App listening on port ${PORT}`);
 });
