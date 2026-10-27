@@ -410,3 +410,160 @@ body {
   background: #a663c9;
   color: #fff;
 }
+
+/* Authentication screens follow the supplied login and registration references. */
+.container {
+  max-width: 850px;
+}
+
+#login-card,
+#register-card {
+  width: 100%;
+  max-width: 850px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3.5rem 3.5rem 2.2rem;
+  border-radius: 38px;
+}
+
+#login-card {
+  min-height: 0;
+  transform: none;
+}
+
+.container > #login-card .card-title {
+  font-family: "Kaushan Script", "Brush Script MT", cursive;
+  font-size: 2.8rem;
+  margin-bottom: 2.6rem;
+}
+
+.container > #login-card .label {
+  font-family: "Kaushan Script", "Brush Script MT", cursive;
+  font-size: 1.65rem;
+  gap: 0.45rem;
+}
+
+.container > #login-card .form {
+  gap: 1.8rem;
+}
+
+#login-card .input,
+#register-card .input {
+  min-height: 4.5rem;
+  border-width: 3px;
+  border-radius: 24px;
+  font-size: 1.2rem;
+  padding: 0.7rem 1.2rem;
+}
+
+#login-card .login-btns,
+#register-card .login-btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-top: 0.35rem;
+}
+
+#login-card .login-btns .btn,
+#register-card .login-btns .btn {
+  min-height: 4.5rem;
+  padding: 0.7rem 1rem;
+  font-size: 1.75rem;
+}
+
+#login-card .login-btns .btn-signup {
+  font-family: "Kaushan Script", "Brush Script MT", cursive;
+  font-weight: 400;
+  color: var(--deep-purple);
+  background: var(--white);
+  border: 3px solid var(--purple);
+}
+
+#login-card .login-btns .btn-signup:hover {
+  color: var(--white);
+  background: #a663c9;
+}
+
+.container > #login-card .switch,
+.container > #register-card .switch {
+  margin-top: 1.7rem;
+  font-size: 1.65rem;
+}
+
+#register-card {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  padding-top: 3rem;
+}
+
+.container > #register-card .card-title {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1.6rem;
+}
+
+.container > #register-card .label {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: 1.65rem;
+  gap: 0.4rem;
+}
+
+.container > #register-card .form {
+  gap: 1.4rem;
+}
+
+#register-card .btn {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-weight: 700;
+  border-radius: 26px;
+}
+
+#register-card .login-btns .btn-signup {
+  color: var(--white);
+  background: #a45fbd;
+  border: 2px solid #a45fbd;
+}
+
+#register-card .login-btns .btn-signup:hover {
+  background: #8f4aa8;
+  border-color: #8f4aa8;
+}
+
+@media (max-width: 480px) {
+  #login-card,
+  #register-card {
+    padding: 2rem 1.25rem 1.5rem;
+    border-radius: 28px;
+  }
+
+  .container > #login-card .card-title {
+    font-size: 2.25rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .container > #login-card .label,
+  .container > #register-card .label {
+    font-size: 1.25rem;
+  }
+
+  #login-card .login-btns,
+  #register-card .login-btns {
+    gap: 0.65rem;
+  }
+
+  #login-card .login-btns .btn,
+  #register-card .login-btns .btn {
+    font-size: 1.1rem;
+    min-height: 3.5rem;
+    padding: 0.55rem;
+  }
+
+  .container > #login-card .switch,
+  .container > #register-card .switch {
+    font-size: 1.1rem;
+  }
+
+  .container > #register-card .card-title {
+    font-size: 2rem;
+  }
+}
