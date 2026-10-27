@@ -259,8 +259,12 @@ $("btn-back").onclick = () => {
 
 // ============ AUTH EVENTS ============
 
-$("show-register").onclick = (e) => { e.preventDefault(); showCard("register-card"); setMsg(""); };
-$("show-login").onclick = (e) => { e.preventDefault(); showCard("login-card"); setMsg(""); };
+const gotoRegister = () => { showCard("register-card"); setMsg(""); };
+$("show-register").onclick = (e) => { e.preventDefault(); gotoRegister(); };
+$("btn-show-register").onclick = gotoRegister;
+const gotoLogin = () => { showCard("login-card"); setMsg(""); };
+$("show-login").onclick = (e) => { e.preventDefault(); gotoLogin(); };
+$("btn-show-login").onclick = gotoLogin;
 
 $("login-form").addEventListener("submit", async (e) => {
   e.preventDefault();

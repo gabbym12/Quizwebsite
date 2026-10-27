@@ -386,3 +386,27 @@ body {
   .quiz-controls { flex-direction: column-reverse; }
   .quiz-controls .btn { max-width: 100%; }
 }
+
+/* --- Sign Up button row on login/register cards --- */
+.login-btns {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.login-btns .btn { flex: 1 1 auto; }
+
+.btn-signup {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  border-radius: 14px;
+  border: 2px solid #a663c9;
+  background: #fff;
+  color: #7b2ea3;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.btn-signup:hover {
+  background: #a663c9;
+  color: #fff;
+}
