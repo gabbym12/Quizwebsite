@@ -101,5 +101,5 @@ quiz_id, question_text, option_a, option_b, option_c, option_d, correct_option, 
 
 ## Status
 
-**Phase:** 1 — Foundation & DB Setup
-**Last updated:** 2026-10-26
+**Phase:** 4 — History & Leaderboards
+**Last updated:** 2026-10-28

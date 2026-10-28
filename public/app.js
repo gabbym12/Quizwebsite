@@ -14,7 +14,7 @@ let autoSubmitted = false;
 const OPTION_LETTERS = ["A", "B", "C", "D"];
 
 function showCard(which) {
-  ["login-card", "register-card", "home-card", "quiz-card", "results-card"].forEach((id) =>
+  ["login-card", "register-card", "home-card", "quiz-card", "results-card", "history-card", "leaderboard-card"].forEach((id) =>
     $(id).classList.toggle("hidden", id !== which)
   );
 }
@@ -256,6 +256,108 @@ $("btn-back").onclick = () => {
   showCard("home-card");
   loadQuizList();
 };
+
+// ============ PHASE 4: MY HISTORY & LEADERBOARDS ============
+
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+async function loadHistory() {
+  showCard("history-card");
+  setMsg("");
+  try {
+    const data = await api("/api/history");
+    const body = $("history-body");
+    if (!data.history.length) {
+      body.innerHTML = "";
+      $("history-empty").classList.remove("hidden");
+    } else {
+      $("history-empty").classList.add("hidden");
+      body.innerHTML = data.history.map((h) => `
+        <tr>
+          <td>${esc(h.quiz_title)}</td>
+          <td>${h.score} / ${h.total_questions}</td>
+          <td>${h.percentage}%</td>
+          <td>${esc(h.completed_at)}</td>
+        </tr>`).join("");
+    }
+  } catch (err) {
+    setMsg(err.message, "error");
+  }
+}
+
+function renderOverall(rows) {
+  const body = $("overall-lb-body");
+  if (!rows.length) {
+    body.innerHTML = "";
+    $("overall-lb-empty").classList.remove("hidden");
+    return;
+  }
+  $("overall-lb-empty").classList.add("hidden");
+  const medals = ["🥇", "🥈", "🥉"];
+  body.innerHTML = rows.map((r, i) => `
+    <tr class="${currentUser && r.username === currentUser.username ? "me" : ""}">
+      <td>${medals[i] ?? i + 1}</td>
+      <td>${esc(r.username)}</td>
+      <td>${r.total_attempts}</td>
+    </tr>`).join("");
+}
+
+async function loadQuizLeaderboard() {
+  const sel = $("lb-quiz-select");
+  const quizId = sel.value;
+  $("lb-quiz-title").textContent = quizId ? "🏆 " + (sel.selectedOptions[0]?.textContent ?? "") : "";
+  const body = $("quiz-lb-body");
+  body.innerHTML = "";
+  $("quiz-lb-empty").classList.add("hidden");
+  if (!quizId) return;
+  try {
+    const data = await api("/api/leaderboard/quiz/" + quizId);
+    if (!data.leaderboard.length) {
+      $("quiz-lb-empty").classList.remove("hidden");
+      return;
+    }
+    const medals = ["🥇", "🥈", "🥉"];
+    body.innerHTML = data.leaderboard.map((r, i) => `
+      <tr class="${currentUser && r.username === currentUser.username ? "me" : ""}">
+        <td>${medals[i] ?? i + 1}</td>
+        <td>${esc(r.username)}</td>
+        <td>${r.high_score} / 10</td>
+        <td>${r.attempts}</td>
+      </tr>`).join("");
+  } catch (err) {
+    setMsg(err.message, "error");
+  }
+}
+
+async function showLeaderboards() {
+  showCard("leaderboard-card");
+  setMsg("");
+  try {
+    const [overall, quizzes] = await Promise.all([
+      api("/api/leaderboard"),
+      api("/api/quizzes"),
+    ]);
+    renderOverall(overall.leaderboard);
+    const sel = $("lb-quiz-select");
+    sel.innerHTML =
+      '<option value="">— pick a quiz —</option>' +
+      quizzes.quizzes.map((q) => '<option value="' + q.id + '">' + esc(q.title) + "</option>").join("");
+    $("lb-quiz-title").textContent = "";
+    $("quiz-lb-body").innerHTML = "";
+    $("quiz-lb-empty").classList.add("hidden");
+  } catch (err) {
+    setMsg(err.message, "error");
+  }
+}
+
+$("btn-history").onclick = loadHistory;
+$("btn-home-history").onclick = loadHistory;
+$("btn-leaderboard").onclick = showLeaderboards;
+$("btn-home-leaderboard").onclick = showLeaderboards;
+$("lb-quiz-select").onchange = loadQuizLeaderboard;
+document.querySelectorAll(".home-again").forEach((b) => {
+  b.onclick = () => { showCard("home-card"); loadQuizList(); };
+});
 
 // ============ AUTH EVENTS ============
 

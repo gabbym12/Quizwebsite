@@ -1,5 +1,5 @@
 // server.js - Gabby Football Quiz App
-// Phase 1: Foundation | Phase 2: Auth & RBAC | Phase 3: Core Quiz Engine
+// Phase 1: Foundation | Phase 2: Auth & RBAC | Phase 3: Quiz Engine | Phase 4: History & Leaderboards
 import express from 'express';
 import session from 'express-session';
 import path from 'node:path';
@@ -8,6 +8,7 @@ import { fileURLToPath } from 'node:url';
 import { testConnection } from './db/index.js';
 import { authRouter } from './routes/auth.js';
 import { quizzesRouter } from './routes/quizzes.js';
+import { historyRouter, leaderboardRouter } from './routes/stats.js';
 import { attachRole } from './middleware/role.js';
 import { requireAuth, requireAdmin } from './routes/auth.js';
 
@@ -40,6 +41,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // --- APIs ---
 app.use('/api/auth', authRouter);
 app.use('/api/quizzes', quizzesRouter);
+app.use('/api/history', historyRouter);
+app.use('/api/leaderboard', leaderboardRouter);
 
 // Admin-only (Question Editor arrives in Phase 5)
 app.get('/api/admin/ping', requireAdmin, (req, res) => {
@@ -47,7 +50,7 @@ app.get('/api/admin/ping', requireAdmin, (req, res) => {
 });
 
 // --- Health ---
-app.get('/api/health', (req, res) => res.json({ status: 'ok', phase: 3 }));
+app.get('/api/health', (req, res) => res.json({ status: 'ok', phase: 4 }));
 app.get('/api/db-health', async (req, res) => {
   try {
     const now = await testConnection();

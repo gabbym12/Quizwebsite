@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Dancing+Script:wght@400..700&family=Kaushan+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles.css?v=auth-reference-2" />
+  <link rel="stylesheet" href="/styles.css?v=phase-4" />
 </head>
 <body>
   <!-- Logged-in header -->
@@ -16,6 +16,8 @@
     <nav class="nav">
       <a id="nav-admin" class="nav-link admin-only hidden" href="#">Question Editor</a>
       <button id="btn-back" class="btn btn-outline hidden">Home</button>
+      <button id="btn-history" class="btn btn-outline">My History</button>
+      <button id="btn-leaderboard" class="btn btn-outline">Leaderboards</button>
       <button id="btn-logout" class="btn btn-outline">Log Out</button>
     </nav>
   </header>
@@ -69,6 +71,10 @@
       <p id="role-badge" class="role-badge"></p>
       <p class="section-label">Pick a quiz:</p>
       <div id="quiz-list" class="quiz-list"></div>
+      <div class="home-actions">
+        <button id="btn-home-history" class="btn btn-outline">My History 📜</button>
+        <button id="btn-home-leaderboard" class="btn btn-primary">Leaderboards 🏆</button>
+      </div>
       <p id="admin-note" class="admin-note admin-only hidden" style="text-align:center">
         🛠️ Admin powers active — the Question Editor arrives in Phase 5.
       </p>
@@ -101,11 +107,46 @@
       <button id="btn-home-results" class="btn btn-outline">Back to Quizzes</button>
     </section>
 
+    <!-- My History (Phase 4) -->
+    <section id="history-card" class="card hidden">
+      <h2 class="card-title">My History 📜</h2>
+      <table class="stats-table">
+        <thead><tr><th>Quiz</th><th>Score</th><th>%</th><th>Completed</th></tr></thead>
+        <tbody id="history-body"></tbody>
+      </table>
+      <p id="history-empty" class="empty-note hidden">No completed quizzes yet — go play one! 🏈</p>
+      <button class="btn btn-primary home-again">Back to Quizzes</button>
+    </section>
+
+    <!-- Leaderboards (Phase 4) -->
+    <section id="leaderboard-card" class="card hidden">
+      <h2 class="card-title">Leaderboards 🏆</h2>
+      <div class="lb-section">
+        <p class="lb-title">Overall — Total Completed Quizzes</p>
+        <table class="stats-table">
+          <thead><tr><th>#</th><th>Player</th><th>Total Attempts</th></tr></thead>
+          <tbody id="overall-lb-body"></tbody>
+        </table>
+        <p id="overall-lb-empty" class="empty-note hidden">No completed quizzes yet.</p>
+      </div>
+      <div class="lb-section">
+        <p class="lb-title">Per-Quiz High Scores</p>
+        <select id="lb-quiz-select" class="input"></select>
+        <p id="lb-quiz-title" class="lb-subtitle"></p>
+        <table class="stats-table">
+          <thead><tr><th>#</th><th>Player</th><th>High Score</th><th>Attempts</th></tr></thead>
+          <tbody id="quiz-lb-body"></tbody>
+        </table>
+        <p id="quiz-lb-empty" class="empty-note hidden">No scores yet for this quiz.</p>
+      </div>
+      <button class="btn btn-primary home-again">Back to Quizzes</button>
+    </section>
+
     <p id="msg" class="msg" role="alert"></p>
   </main>
 
   <p class="page-note">Design preview — everything works for real on Replit with the database.</p>
 
-  <script src="/app.js?v=auth-reference-2"></script>
+  <script src="/app.js?v=phase-4"></script>
 </body>
 </html>
