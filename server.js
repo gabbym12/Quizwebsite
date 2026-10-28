@@ -14,6 +14,9 @@ import { requireAuth, requireAdmin } from './routes/auth.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
+// Replit terminates HTTPS at its reverse proxy. Trust that proxy so Express
+// recognizes secure requests and express-session can set Secure cookies.
+app.set('trust proxy', 1);
 const PORT = process.env.PORT || 3000;
 
 // --- Middleware ---

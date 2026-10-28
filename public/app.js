@@ -70,6 +70,10 @@ async function loadQuizList() {
     const data = await api("/api/quizzes");
     const list = $("quiz-list");
     list.innerHTML = "";
+    if (!Array.isArray(data.quizzes) || data.quizzes.length === 0) {
+      setMsg("No quizzes are available yet.", "error");
+      return;
+    }
     data.quizzes.forEach((q) => {
       const btn = document.createElement("button");
       btn.className = "quiz-pick";
@@ -77,6 +81,7 @@ async function loadQuizList() {
       btn.onclick = () => startQuiz(q.id, q.title);
       list.appendChild(btn);
     });
+    setMsg("");
   } catch (err) {
     setMsg(err.message, "error");
   }
