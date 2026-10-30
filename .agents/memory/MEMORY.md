@@ -1,1 +1,2 @@
 - [Login-screen scope](login-screen-scope.md) — preserve the supplied Mistral login screen; change visible design only when the user asks.
+- [Development branch and roadmap](development-plan.md) — stay on `feature/quiz-app-specification` and follow `SPEC-v4.md` unless the user changes direction.
