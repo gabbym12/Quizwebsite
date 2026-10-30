@@ -2,10 +2,11 @@
 // Phase 1: Foundation | Phase 2: Auth & RBAC | Phase 3: Quiz Engine | Phase 4: History & Leaderboards
 import express from 'express';
 import session from 'express-session';
+import connectPgSimple from 'connect-pg-simple';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
-import { testConnection } from './db/index.js';
+import { pool, testConnection } from './db/index.js';
 import { authRouter } from './routes/auth.js';
 import { quizzesRouter } from './routes/quizzes.js';
 import { historyRouter, leaderboardRouter } from './routes/stats.js';
@@ -14,6 +15,7 @@ import { requireAuth, requireAdmin } from './routes/auth.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
+const PostgreSqlSessionStore = connectPgSimple(session);
 // Replit terminates HTTPS at its reverse proxy. Trust that proxy so Express
 // recognizes secure requests and express-session can set Secure cookies.
 app.set('trust proxy', 1);
@@ -26,6 +28,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(session({
   name: 'gabby_quiz_sid',
   secret: process.env.SESSION_SECRET || crypto.randomBytes(32).toString('hex'),
+  store: new PostgreSqlSessionStore({
+    pool,
+    createTableIfMissing: true,
+  }),
   resave: false,
   saveUninitialized: false,
   cookie: {
